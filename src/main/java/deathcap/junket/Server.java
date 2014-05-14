@@ -23,7 +23,10 @@ import java.util.logging.Logger;
 
 public class Server implements org.bukkit.Server {
 
+    private final Logger logger;
+
     public Server() {
+        logger = Logger.getLogger("Junket");
     }
 
     @Override
@@ -233,7 +236,7 @@ public class Server implements org.bukkit.Server {
 
     @Override
     public Logger getLogger() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return logger;
     }
 
     @Override
