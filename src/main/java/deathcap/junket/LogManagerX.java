@@ -2,11 +2,10 @@ package deathcap.junket;
 
 import java.util.logging.LogManager;
 
-public class LogManager2 extends LogManager {
+public class LogManagerX extends LogManager {
 
-    private static LogManager2 instance;
-
-    protected LogManager2() {
+    public LogManagerX() {
+        System.out.println("constructing LogManagerX");
         // to workaround https://github.com/plasma-umass/doppio/issues/308
         // removed java.util.logging.LogManager constructor shutdown hook:
         /*
@@ -17,13 +16,7 @@ public class LogManager2 extends LogManager {
              // If the VM is already shutting down,
              // We do not need to register shutdownHook.
          */
-    }
 
-    public static LogManager getLogManager2() {
-        if (instance == null) {
-            instance = new LogManager2();
-        }
-
-        return instance;
+        //super();
     }
 }
