@@ -60,13 +60,32 @@ public class Server implements org.bukkit.Server {
     }
 
     private Logger createLogger() {
+        Logger logger = null;
+
         String name = "Junket";
 
-        //Logger logger = new Logger(name, null); // protected
+        //Logger logger = new Logger(name, null); // protected access
+        try {
+            Constructor<Logger> cons = Logger.class.getDeclaredConstructor(String.class);
 
-        Logger logger = new SimpleLogger(name, null);
-        //LogManager.getLogManager().addLogger(logger);
-        logger.setLevel(Level.INFO);
+            cons.setAccessible(true);
+            logger = cons.newInstance(name);
+        } catch (NoSuchMethodException ex) {
+            System.out.println("failed reflection on logger method");
+            System.exit(-1);
+        } catch (InvocationTargetException ex) {
+            System.out.println("failed to invoke logger method");
+            System.exit(-2);
+        } catch (IllegalAccessException ex) {
+            System.out.println("illegal access on logger method");
+            System.exit(-3);
+        } catch (InstantiationException ex) {
+            System.out.println("failed to instantiate logger method");
+            System.exit(-4);
+        }
+
+        //LogManager.getLogManager().addLogger(logger); // https://github.com/plasma-umass/doppio/issues/308
+        //logger.setLevel(Level.INFO);
         SimpleFormatter formatter = new SimpleFormatter();
         StreamHandler h = new StreamHandler(System.out, formatter);
         h.setLevel(Level.INFO);
