@@ -11,6 +11,8 @@ import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
+import org.bukkit.plugin.SimplePluginManager;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
@@ -24,9 +26,32 @@ import java.util.logging.Logger;
 public class Server implements org.bukkit.Server {
 
     private final Logger logger;
+    private final SimpleCommandMap commandMap;
+    private final SimplePluginManager pluginManager;
 
     public Server() {
         logger = Logger.getLogger("Junket");
+
+        commandMap = new SimpleCommandMap(this);
+        pluginManager = new SimplePluginManager(this, commandMap);
+
+        File pluginsDir = new File("plugins");
+        if (!pluginsDir.isDirectory()) {
+            getLogger().info("Creating plugins directory");
+            if (!pluginsDir.mkdir()) {
+                getLogger().severe("Failed to create plugins directory");
+                System.exit(-1);
+            }
+        }
+
+        pluginManager.registerInterface(JavaPluginLoader.class);
+
+        pluginManager.loadPlugins(pluginsDir);
+        getLogger().info("Loaded "+pluginManager.getPlugins().length+" plugins");
+        for (Plugin plugin : pluginManager.getPlugins()) {
+            getLogger().info("Enabling plugin " + plugin);
+            pluginManager.enablePlugin(plugin);
+        }
     }
 
     @Override
@@ -175,7 +200,7 @@ public class Server implements org.bukkit.Server {
 
     @Override
     public PluginManager getPluginManager() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return pluginManager;
     }
 
     @Override
