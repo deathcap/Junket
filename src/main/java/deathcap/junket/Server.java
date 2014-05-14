@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.*;
 import java.util.logging.Logger;
 
+@SuppressWarnings("deprecation")
 public class Server implements org.bukkit.Server {
 
     private final Logger logger;
@@ -176,19 +177,16 @@ public class Server implements org.bukkit.Server {
     }
 
     @Override
-    @SuppressWarnings("deprecated")
     public Player getPlayer(String s) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    @SuppressWarnings("deprecated")
     public Player getPlayerExact(String s) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    @SuppressWarnings("deprecated")
     public List<Player> matchPlayer(String s) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -244,7 +242,6 @@ public class Server implements org.bukkit.Server {
     }
 
     @Override
-    @SuppressWarnings("deprecated")
     public MapView getMap(short i) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -355,7 +352,6 @@ public class Server implements org.bukkit.Server {
     }
 
     @Override
-    @SuppressWarnings("deprecated")
     public OfflinePlayer getOfflinePlayer(String s) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -521,13 +517,11 @@ public class Server implements org.bukkit.Server {
     }
 
     @Override
-    @SuppressWarnings("deprecated")
     public int getIdleTimeout() {
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    @SuppressWarnings("deprecated")
     public UnsafeValues getUnsafe() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
