@@ -20,7 +20,11 @@ import org.bukkit.util.CachedServerIcon;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 @SuppressWarnings("deprecation")
@@ -31,8 +35,7 @@ public class Server implements org.bukkit.Server {
     private final SimplePluginManager pluginManager;
 
     public Server() {
-        logger = Logger.getLogger("Junket");
-
+        logger = createLogger();
         commandMap = new SimpleCommandMap(this);
         pluginManager = new SimplePluginManager(this, commandMap);
 
@@ -53,6 +56,38 @@ public class Server implements org.bukkit.Server {
             getLogger().info("Enabling plugin " + plugin);
             pluginManager.enablePlugin(plugin);
         }
+    }
+
+    private Logger createLogger() {
+        Logger logger = null;
+
+        String name = "Junket";
+        //logger = Logger.getLogger(name); // https://github.com/plasma-umass/doppio/issues/308
+
+        LogManager manager = LogManager2.getLogManager2();
+
+        //Logger logger = new Logger(name, null); // protected access
+        try {
+            Constructor<Logger> cons = Logger.class.getDeclaredConstructor(String.class, String.class);
+
+            cons.setAccessible(true);
+            logger = cons.newInstance(name, null);
+        } catch (NoSuchMethodException ex) {
+            System.out.println("failed reflection on logger method");
+            System.exit(-1);
+        } catch (InvocationTargetException ex) {
+            System.out.println("failed to invoke logger method");
+            System.exit(-2);
+        } catch (IllegalAccessException ex) {
+            System.out.println("illegal access on logger method");
+            System.exit(-3);
+        } catch (InstantiationException ex) {
+            System.out.println("failed to instantiate logger method");
+            System.exit(-4);
+        }
+
+        manager.addLogger(logger);
+        return manager.getLogger(name);
     }
 
     @Override
