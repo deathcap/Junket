@@ -17,9 +17,9 @@ public class Main {
 
         File pluginsDir = new File("plugins");
         if (!pluginsDir.isDirectory()) {
-            System.out.println("Creating plugins directory");
+            server.getLogger().info("Creating plugins directory");
             if (!pluginsDir.mkdir()) {
-                System.out.println("Failed to create plugins directory");
+                server.getLogger().severe("Failed to create plugins directory");
                 System.exit(-1);
             }
         }
@@ -27,9 +27,10 @@ public class Main {
         pluginManager.registerInterface(JavaPluginLoader.class);
 
         pluginManager.loadPlugins(pluginsDir);
-        System.out.println("Loaded "+pluginManager.getPlugins().length+" plugins");
+        server.getLogger().info("Loaded "+pluginManager.getPlugins().length+" plugins");
         for (Plugin plugin : pluginManager.getPlugins()) {
-            System.out.println(plugin);
+            server.getLogger().info("Enabling plugin " + plugin);
+            pluginManager.enablePlugin(plugin);
         }
     }
 }
