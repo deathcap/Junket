@@ -2,7 +2,9 @@
 package deathcap.junket;
 
 import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
+import org.bukkit.plugin.java.JavaPluginLoader;
 
 import java.io.File;
 
@@ -22,6 +24,12 @@ public class Main {
             }
         }
 
+        pluginManager.registerInterface(JavaPluginLoader.class);
+
         pluginManager.loadPlugins(pluginsDir);
+        System.out.println("Loaded "+pluginManager.getPlugins().length+" plugins");
+        for (Plugin plugin : pluginManager.getPlugins()) {
+            System.out.println(plugin);
+        }
     }
 }
