@@ -1,0 +1,6 @@
+# Junket
+
+## License
+
+MIT
+

@@ -1,0 +1,15 @@
+{
+  "name": "Junket",
+  "description": "",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:deathcap/Junket.git"
+  },
+  "keywords": [
+    "voxel"
+  ],
+  "dependencies": {
+  },
+  "license": "MIT"
+}
