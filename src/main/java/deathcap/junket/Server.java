@@ -123,7 +123,8 @@ public class Server implements org.bukkit.Server {
 
     @Override
     public String getUpdateFolder() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        // not set, but must not be null
+        return "";
     }
 
     @Override
