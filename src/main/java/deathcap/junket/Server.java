@@ -24,8 +24,6 @@ import java.util.logging.Logger;
 public class Server implements org.bukkit.Server {
 
     public Server() {
-        System.out.println("Hello world!");
-        // TODO: load plugins
     }
 
     @Override
