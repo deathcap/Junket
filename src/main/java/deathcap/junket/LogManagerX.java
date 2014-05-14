@@ -5,6 +5,7 @@ import java.util.logging.LogManager;
 public class LogManagerX extends LogManager {
 
     public LogManagerX() {
+        this(0);
         System.out.println("constructing LogManagerX");
         // to workaround https://github.com/plasma-umass/doppio/issues/308
         // removed java.util.logging.LogManager constructor shutdown hook:
@@ -18,5 +19,9 @@ public class LogManagerX extends LogManager {
          */
 
         //super();
+    }
+
+    private LogManagerX(int x) {
+
     }
 }
