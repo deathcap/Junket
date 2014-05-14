@@ -20,11 +20,11 @@ import org.bukkit.util.CachedServerIcon;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 @SuppressWarnings("deprecation")
 public class Server implements org.bukkit.Server {
@@ -64,8 +64,32 @@ public class Server implements org.bukkit.Server {
 
         String name = "Junket";
 
-        System.setProperty("java.util.logging.manager", "deathcap.junket.LogManagerX");
-        logger = Logger.getLogger(name);
+        //Logger logger = new Logger(name, null); // protected access
+        try {
+            Constructor<Logger> cons = Logger.class.getDeclaredConstructor(String.class, String.class);
+
+            cons.setAccessible(true);
+            logger = cons.newInstance(name, null);
+        } catch (NoSuchMethodException ex) {
+            System.out.println("failed reflection on logger method");
+            System.exit(-1);
+        } catch (InvocationTargetException ex) {
+            System.out.println("failed to invoke logger method");
+            System.exit(-2);
+        } catch (IllegalAccessException ex) {
+            System.out.println("illegal access on logger method");
+            System.exit(-3);
+        } catch (InstantiationException ex) {
+            System.out.println("failed to instantiate logger method");
+            System.exit(-4);
+        }
+
+        //LogManager.getLogManager().addLogger(logger); // https://github.com/plasma-umass/doppio/issues/308
+        logger.setLevel(Level.INFO);
+        SimpleFormatter formatter = new SimpleFormatter();
+        StreamHandler h = new StreamHandler(System.out, formatter);
+        h.setLevel(Level.INFO);
+        logger.addHandler(h);
 
         return logger;
     }
