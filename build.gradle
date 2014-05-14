@@ -1,5 +1,8 @@
 
 apply plugin: 'java'
+apply plugin: 'shadow'
+
+defaultTasks 'clean', 'build', 'shadow'
 
 repositories {
     mavenCentral()
@@ -7,6 +10,15 @@ repositories {
     // see https://github.com/simplyianm/bukkit-bootstrap/blob/master/build.gradle
     maven {
         url 'http://repo.md-5.net/content/groups/public/'
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
     }
 }
 
