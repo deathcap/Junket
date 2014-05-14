@@ -1,10 +1,8 @@
 
 apply plugin: 'java'
 apply plugin: 'shadow'
-apply plugin: 'application'
 
 version = '0.0.1'
-mainClassName = 'junket.Main'
 
 defaultTasks 'clean', 'build', 'shadow'
 
@@ -30,4 +28,8 @@ dependencies {
     compile group: 'org.bukkit', name: 'bukkit', version: '1.7.9-R0.1-SNAPSHOT'
 }
 
-
+jar {
+    manifest {
+        attributes 'Main-Class': 'deathcap.junket.Main'
+    }
+}
