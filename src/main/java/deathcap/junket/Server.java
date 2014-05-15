@@ -20,9 +20,6 @@ import org.bukkit.util.CachedServerIcon;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.logging.*;
 
@@ -34,6 +31,7 @@ public class Server implements org.bukkit.Server {
     private final SimplePluginManager pluginManager;
 
     public Server() {
+        System.out.println("Hello");
         logger = createLogger();
         logger.info("Starting up...");
 
@@ -60,36 +58,15 @@ public class Server implements org.bukkit.Server {
     }
 
     private Logger createLogger() {
-        Logger logger = null;
-
         String name = "Junket";
 
-        //Logger logger = new Logger(name, null); // protected access
-        try {
-            Constructor<Logger> cons = Logger.class.getDeclaredConstructor(String.class);
+        Logger logger = Logger.getLogger(name);
 
-            cons.setAccessible(true);
-            logger = cons.newInstance(name);
-        } catch (NoSuchMethodException ex) {
-            System.out.println("failed reflection on logger method");
-            System.exit(-1);
-        } catch (InvocationTargetException ex) {
-            System.out.println("failed to invoke logger method");
-            System.exit(-2);
-        } catch (IllegalAccessException ex) {
-            System.out.println("illegal access on logger method");
-            System.exit(-3);
-        } catch (InstantiationException ex) {
-            System.out.println("failed to instantiate logger method");
-            System.exit(-4);
-        }
+        // add a ConsoleHandler for logging, since the default handler doesn't output in doppio TODO: why? file?
+        logger.addHandler(new ConsoleHandler());
 
-        //LogManager.getLogManager().addLogger(logger); // https://github.com/plasma-umass/doppio/issues/308
-        //logger.setLevel(Level.INFO);
-        SimpleFormatter formatter = new SimpleFormatter();
-        StreamHandler h = new StreamHandler(System.out, formatter);
-        h.setLevel(Level.INFO);
-        logger.addHandler(h);
+        // prevent duplicate logging in non-doppio JVM
+        logger.setUseParentHandlers(false);
 
         return logger;
     }
