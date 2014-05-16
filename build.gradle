@@ -26,7 +26,7 @@ buildscript {
 }
 
 dependencies {
-    compile group: 'org.bukkit', name: 'bukkit', version: '1.7.9-R0.1-SNAPSHOT'
+    compile group: 'org.bukkit', name: 'bukkit', version: '1.7.9-R0.2-SNAPSHOT'
 }
 
 jar {
