@@ -551,6 +551,7 @@ public class ServerImpl implements org.bukkit.Server {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public UnsafeValues getUnsafe() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

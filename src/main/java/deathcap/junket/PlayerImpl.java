@@ -22,6 +22,7 @@ import org.bukkit.util.Vector;
 import java.net.InetSocketAddress;
 import java.util.*;
 
+@SuppressWarnings("deprecation")
 public class PlayerImpl implements Player {
 
     private WorldImpl world;
@@ -151,6 +152,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void playNote(Location loc, byte instrument, byte note) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -167,11 +169,13 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void playSound(Location location, String sound, float volume, float pitch) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void playEffect(Location loc, Effect effect, int data) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -182,17 +186,20 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void sendBlockChange(Location loc, Material material, byte data) {
         // TODO: should be same as setMaterial for now (single-player)
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean sendChunkChange(Location loc, int sx, int sy, int sz, byte[] data) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void sendBlockChange(Location loc, int material, byte data) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -208,6 +215,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void updateInventory() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -490,6 +498,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean isOnGround() {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -716,6 +725,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setTexturePack(String url) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -959,6 +969,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public int _INVALID_getLastDamage() {
         return (int)this.getLastDamage();
     }
@@ -969,6 +980,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void _INVALID_setLastDamage(int damage) {
         this.setLastDamage(damage);
     }
