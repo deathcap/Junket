@@ -29,6 +29,7 @@ public class Server implements org.bukkit.Server {
     private final Logger logger;
     private final SimpleCommandMap commandMap;
     private final SimplePluginManager pluginManager;
+    private WorldImpl theWorld;
 
     public Server() {
         System.out.println("Hello");
@@ -40,6 +41,11 @@ public class Server implements org.bukkit.Server {
         commandMap = new SimpleCommandMap(this);
         pluginManager = new SimplePluginManager(this, commandMap);
 
+        createWorld();
+        loadPlugins();
+    }
+
+    private void loadPlugins() {
         File pluginsDir = new File("plugins");
         if (!pluginsDir.isDirectory()) {
             getLogger().info("Creating plugins directory");
@@ -72,6 +78,10 @@ public class Server implements org.bukkit.Server {
         logger.setUseParentHandlers(false);
 
         return logger;
+    }
+
+    private void createWorld() {
+        theWorld = new WorldImpl();
     }
 
     @Override

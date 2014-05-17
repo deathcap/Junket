@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public class World implements org.bukkit.World {
+public class WorldImpl implements org.bukkit.World {
     @Override
     public Block getBlockAt(int i, int i2, int i3) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
