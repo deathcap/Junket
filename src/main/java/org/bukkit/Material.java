@@ -58,11 +58,14 @@ public class Material extends deathcap.junket.PlaceholderEnum { // => extends ja
 
     private static Map<String, Integer> name2id = new HashMap<String, Integer>();
 
+    // value materials are set to before registered (or might not be registered at all)
+    public static Material UNSUPPORTED = new Material("UNSUPPORTED", 255);
+
     // well-known material fields part of the Bukkit API
-    // set to Material instances when materials are loaded TODO: set to placeholder before initialized?
-    public static Material STONE;
-    public static Material DIRT;
-    public static Material SAND;
+    // set to Material instances when materials are loaded
+    public static Material STONE = UNSUPPORTED;
+    public static Material DIRT = UNSUPPORTED;
+    public static Material SAND = UNSUPPORTED;
 
     public static Material getMaterial(String name) {
         if (!Material.name2id.containsKey(name)) {
