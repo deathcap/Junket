@@ -24,17 +24,17 @@ import java.util.*;
 import java.util.logging.*;
 
 @SuppressWarnings("deprecation")
-public class Server implements org.bukkit.Server {
+public class ServerImpl implements org.bukkit.Server {
 
     private final Logger logger;
     private final SimpleCommandMap commandMap;
     private final SimplePluginManager pluginManager;
     private WorldImpl theWorld;
 
-    public Server() {
+    public ServerImpl() {
         System.out.println("Hello");
         logger = createLogger();
-        logger.info("Server starting...");
+        logger.info("ServerImpl starting...");
 
         Bukkit.setServer(this);
 
