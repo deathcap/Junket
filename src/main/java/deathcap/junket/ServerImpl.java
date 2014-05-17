@@ -47,7 +47,10 @@ public class ServerImpl implements org.bukkit.Server {
     }
 
     private void loadMaterials() {
+        new Material("AIR", 0);
+        // materials to load TODO: add dynamically as registered in voxel-registry
         new Material("STONE", 1);
+        new Material("GRASS", 2);
         new Material("DIRT", 3);
         new Material("SAND", 12);
     }
