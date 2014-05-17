@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
+  <groupId>deathcap.junket</groupId>
+  <artifactId>junket</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>org.bukkit</groupId>
+      <artifactId>bukkit</artifactId>
+      <version>1.7.9-R0.2-SNAPSHOT</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- use Bukkit snapshots from https://github.com/Bukkit/Bukkit/blob/master/pom.xml -->
+  <distributionManagement>
+    <repository>
+      <id>repobo-rel</id>
+      <name>repo.bukkit.org Releases</name>
+      <url>http://repo.bukkit.org/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>repobo-snap</id>
+      <name>repo.bukkit.org Snapshots</name>
+      <url>http://repo.bukkit.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <build>
+    <plugins>
+      <!-- include dependencies into uberjar
+           https://maven.apache.org/plugins/maven-shade-plugin/examples/includes-excludes.html -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <!-- http://maven.apache.org/shared/maven-archiver/index.html -->
+          <archive>
+            <manifest>
+              <mainClass>deathcap.junket.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- More Project Information -->
+  <name>Junket</name>
+  <url>https://github.com/deathcap/Junket</url>
+  <inceptionYear>2014</inceptionYear>
+</project>

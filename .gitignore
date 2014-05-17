@@ -24,3 +24,6 @@ build
 .idea
 
 plugins
+
+dependency-reduced-pom.xml
+target
