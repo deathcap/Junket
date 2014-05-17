@@ -42,7 +42,14 @@ public class ServerImpl implements org.bukkit.Server {
         pluginManager = new SimplePluginManager(this, commandMap);
 
         createWorld();
+        loadMaterials();
         loadPlugins();
+    }
+
+    private void loadMaterials() {
+        new Material("STONE", 1);
+        new Material("DIRT", 3);
+        new Material("SAND", 12);
     }
 
     private void loadPlugins() {

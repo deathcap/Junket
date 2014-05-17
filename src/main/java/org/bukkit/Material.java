@@ -2,6 +2,7 @@ package org.bukkit;
 
 import org.bukkit.material.MaterialData;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,17 @@ public class Material extends deathcap.junket.PlaceholderEnum { // => extends ja
         // save for easy lookup
         Material.ENUM$VALUES[bukkitIndex] = this;
         Material.name2id.put(bukkitName, bukkitIndex);
+
+        // populate the API fields, if they exist for this material
+        try {
+            Field field = this.getClass().getDeclaredField(bukkitName);
+
+            field.set(null, this);
+        } catch (NoSuchFieldException ex) {
+            // that's ok - material outside of the API
+        } catch (IllegalAccessException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     // array ordinal -> Material
@@ -42,10 +54,11 @@ public class Material extends deathcap.junket.PlaceholderEnum { // => extends ja
 
     private static Map<String, Integer> name2id = new HashMap<String, Integer>();
 
-    // well-known materials part of the API - TODO: can we add dynamically in the constructor?
-    public static Material STONE = new Material("STONE", 1);
-    public static Material DIRT = new Material("DIRT", 3);
-    public static Material SAND = new Material("SAND", 12);
+    // well-known material fields part of the Bukkit API
+    // set to Material instances when materials are loaded TODO: set to placeholder before initialized?
+    public static Material STONE;
+    public static Material DIRT;
+    public static Material SAND;
 
     public static Material getMaterial(String name) {
         if (!Material.name2id.containsKey(name)) {
