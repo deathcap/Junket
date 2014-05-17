@@ -15,7 +15,7 @@ public class Material extends deathcap.junket.PlaceholderEnum { // => extends ja
     private final String bukkitName;
     private final int bukkitIndex;
 
-    private Material(String bukkitName, int bukkitIndex) {
+    public Material(String bukkitName, int bukkitIndex) {
         super(bukkitName, bukkitIndex);
 
         this.bukkitName = bukkitName;
