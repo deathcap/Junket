@@ -4,10 +4,11 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+@SuppressWarnings("deprecation")
 public class PlayerInventoryImpl extends InventoryImpl implements PlayerInventory {
     @Override
     public ItemStack[] getArmorContents() {
-        return new ItemStack[0];  //To change body of implemented methods use File | Settings | File Templates.
+        return new ItemStack[4];  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -57,6 +58,7 @@ public class PlayerInventoryImpl extends InventoryImpl implements PlayerInventor
 
     @Override
     public ItemStack getItemInHand() {
+        // TODO: voxel-carry / voxel-inventory-hotbar getHeld()
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

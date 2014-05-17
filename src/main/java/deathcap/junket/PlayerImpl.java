@@ -26,9 +26,11 @@ import java.util.*;
 public class PlayerImpl implements Player {
 
     private WorldImpl world;
+    private PlayerInventoryImpl playerInventory;
 
     public PlayerImpl(WorldImpl world) {
         this.world = world;
+        this.playerInventory = new PlayerInventoryImpl();
     }
 
     @Override
@@ -794,7 +796,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public PlayerInventory getInventory() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.playerInventory;
     }
 
     @Override
@@ -839,12 +841,12 @@ public class PlayerImpl implements Player {
 
     @Override
     public ItemStack getItemInHand() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.playerInventory.getItemInHand();
     }
 
     @Override
     public void setItemInHand(ItemStack item) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.playerInventory.setItemInHand(item);
     }
 
     @Override

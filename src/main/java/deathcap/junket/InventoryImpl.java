@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
+// TODO: bridge to https://github.com/deathcap/inventory
+@SuppressWarnings("deprecation")
 public class InventoryImpl implements Inventory {
     @Override
     public int getSize() {
@@ -34,6 +36,7 @@ public class InventoryImpl implements Inventory {
 
     @Override
     public ItemStack getItem(int index) {
+        // TODO: inventory get()
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
