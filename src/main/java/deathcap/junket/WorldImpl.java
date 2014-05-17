@@ -12,20 +12,18 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 import java.io.File;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class WorldImpl implements org.bukkit.World {
     @Override
-    public Block getBlockAt(int i, int i2, int i3) {
+    public Block getBlockAt(int x, int y, int z) {
+        // TODO: call voxel-engine getBlock()
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public Block getBlockAt(Location location) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
     }
 
     /**
@@ -65,18 +63,19 @@ public class WorldImpl implements org.bukkit.World {
     }
 
     @Override
-    public Chunk getChunkAt(int i, int i2) {
+    public Chunk getChunkAt(int x, int z) {
+        // TODO: this is sort of a problem with cubic chunks..
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public Chunk getChunkAt(Location location) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.getChunkAt(location.getBlockX(), location.getBlockZ());
     }
 
     @Override
     public Chunk getChunkAt(Block block) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.getChunkAt(block.getLocation());
     }
 
     @Override
@@ -245,7 +244,7 @@ public class WorldImpl implements org.bukkit.World {
 
     @Override
     public String getName() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return "theWorld";
     }
 
     @Override
@@ -405,12 +404,12 @@ public class WorldImpl implements org.bukkit.World {
     }
 
     @Override
-    public void playEffect(Location location, Effect effect, int i) {
+    public void playEffect(Location location, Effect effect, int data) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void playEffect(Location location, Effect effect, int i, int i2) {
+    public void playEffect(Location location, Effect effect, int data, int radius) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -430,7 +429,7 @@ public class WorldImpl implements org.bukkit.World {
     }
 
     @Override
-    public void setSpawnFlags(boolean b, boolean b2) {
+    public void setSpawnFlags(boolean allowMonsters, boolean allowFlags) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -445,28 +444,28 @@ public class WorldImpl implements org.bukkit.World {
     }
 
     @Override
-    public Biome getBiome(int i, int i2) {
+    public Biome getBiome(int x, int z) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void setBiome(int i, int i2, Biome biome) {
+    public void setBiome(int x, int z, Biome biome) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public double getTemperature(int i, int i2) {
+    public double getTemperature(int x, int z) {
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public double getHumidity(int i, int i2) {
+    public double getHumidity(int x, int z) {
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public int getMaxHeight() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return Integer.MAX_VALUE;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -580,7 +579,8 @@ public class WorldImpl implements org.bukkit.World {
     }
 
     @Override
-    public void playSound(Location location, Sound sound, float v, float v2) {
+    public void playSound(Location location, Sound sound, float volume, float pitch) {
+        // TODO: voxel-sfx
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -631,6 +631,6 @@ public class WorldImpl implements org.bukkit.World {
 
     @Override
     public Set<String> getListeningPluginChannels() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return Collections.emptySet();
     }
 }
