@@ -4,7 +4,7 @@ apply plugin: 'shadow'
 
 version = '0.0.1'
 
-defaultTasks 'clean', 'build', 'shadow'
+defaultTasks 'build', 'shadow'
 
 repositories {
     mavenLocal()
