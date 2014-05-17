@@ -242,7 +242,7 @@ public class ServerImpl implements org.bukkit.Server {
 
     @Override
     public List<World> getWorlds() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return Arrays.asList(new World[] { theWorld } ); // TODO: multiple worlds
     }
 
     @Override
@@ -262,12 +262,12 @@ public class ServerImpl implements org.bukkit.Server {
 
     @Override
     public World getWorld(String s) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return theWorld; // TODO: lookup world
     }
 
     @Override
     public World getWorld(UUID uuid) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return theWorld; // TODO: lookup world
     }
 
     @Override
