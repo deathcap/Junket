@@ -33,7 +33,9 @@ public class Server implements org.bukkit.Server {
     public Server() {
         System.out.println("Hello");
         logger = createLogger();
-        logger.info("Starting up...");
+        logger.info("Server starting...");
+
+        Bukkit.setServer(this);
 
         commandMap = new SimpleCommandMap(this);
         pluginManager = new SimplePluginManager(this, commandMap);
@@ -49,6 +51,7 @@ public class Server implements org.bukkit.Server {
 
         pluginManager.registerInterface(JavaPluginLoader.class);
 
+        logger.info("Loading plugins...");
         pluginManager.loadPlugins(pluginsDir);
         getLogger().info("Loaded "+pluginManager.getPlugins().length+" plugins");
         for (Plugin plugin : pluginManager.getPlugins()) {
