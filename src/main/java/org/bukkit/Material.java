@@ -99,7 +99,7 @@ public class Material extends deathcap.junket.PlaceholderEnum { // => extends ja
         return 64;
     }
 
-    public int getDurability() {
+    public short getMaxDurability() {
         return 1;
     }
 
