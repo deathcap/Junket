@@ -4,15 +4,6 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- use Bukkit snapshots from https://github.com/Bukkit/Bukkit/blob/master/pom.xml -->
-  <repositories>
-    <repository>
-      <id>repobo-rel</id>
-      <name>repo.bukkit.org Releases</name>
-      <url>http://repo.bukkit.org/content/repositories/releases/</url>
-    </repository>
-  </repositories>
-
   <!-- The Basics -->
   <groupId>deathcap.junket</groupId>
   <artifactId>junket</artifactId>
@@ -22,11 +13,25 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>1.7.9-R0.1</version>
+      <version>1.7.9-R0.2-SNAPSHOT</version>
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
   </dependencies>
+
+  <!-- use Bukkit snapshots from https://github.com/Bukkit/Bukkit/blob/master/pom.xml -->
+  <distributionManagement>
+    <repository>
+      <id>repobo-rel</id>
+      <name>repo.bukkit.org Releases</name>
+      <url>http://repo.bukkit.org/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>repobo-snap</id>
+      <name>repo.bukkit.org Snapshots</name>
+      <url>http://repo.bukkit.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <build>
     <plugins>
