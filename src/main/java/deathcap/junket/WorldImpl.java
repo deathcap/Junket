@@ -15,6 +15,13 @@ import java.io.File;
 import java.util.*;
 
 public class WorldImpl implements org.bukkit.World {
+
+    private PlayerImpl thePlayer;
+
+    public WorldImpl() {
+        thePlayer = new PlayerImpl(this); // only support one player for now TODO: more
+    }
+
     @Override
     public Block getBlockAt(int x, int y, int z) {
         return new BlockImpl(this, x, y, z);
@@ -238,7 +245,7 @@ public class WorldImpl implements org.bukkit.World {
 
     @Override
     public List<Player> getPlayers() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return Arrays.asList(new Player[] { thePlayer });
     }
 
     @Override

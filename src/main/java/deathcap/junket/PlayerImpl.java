@@ -23,6 +23,13 @@ import java.net.InetSocketAddress;
 import java.util.*;
 
 public class PlayerImpl implements Player {
+
+    private WorldImpl world;
+
+    public PlayerImpl(WorldImpl world) {
+        this.world = world;
+    }
+
     @Override
     public String getDisplayName() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
@@ -155,6 +162,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void playSound(Location location, Sound sound, float volume, float pitch) {
+        // TODO: voxel-sfx
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -175,6 +183,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void sendBlockChange(Location loc, Material material, byte data) {
+        // TODO: should be same as setMaterial for now (single-player)
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -435,6 +444,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public boolean getAllowFlight() {
+        // TODO: voxel-fly
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -460,6 +470,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public Location getLocation() {
+        // TODO: voxel-player or avatar
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -485,7 +496,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public World getWorld() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.world;
     }
 
     @Override
@@ -545,7 +556,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public boolean isValid() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
     }
 
     @Override
@@ -575,6 +586,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public float getFallDistance() {
+        // TODO: voxel-physical fallDistance
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -620,7 +632,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public Player getPlayer() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this; // funny, but this is from OfflinePlayer (could be null if wasn't online)
     }
 
     @Override
@@ -655,7 +667,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public EntityType getType() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return EntityType.PLAYER;
     }
 
     @Override
@@ -710,6 +722,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void setResourcePack(String url) {
+        // TODO: voxel-artpacks
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -735,6 +748,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void setHealthScale(double scale) throws IllegalArgumentException {
+        // TODO: voxel-health
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -760,7 +774,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public boolean isOnline() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
     }
 
     @Override
@@ -845,6 +859,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public GameMode getGameMode() {
+        // TODO: voxel-gamemode
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -945,7 +960,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public int _INVALID_getLastDamage() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return (int)this.getLastDamage();
     }
 
     @Override
@@ -955,7 +970,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void _INVALID_setLastDamage(int damage) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.setLastDamage(damage);
     }
 
     @Override
@@ -1030,7 +1045,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public boolean getCanPickupItems() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
     }
 
     @Override
@@ -1070,32 +1085,36 @@ public class PlayerImpl implements Player {
 
     @Override
     public void damage(double amount) {
+        // TODO: voxel-health damage()
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void _INVALID_damage(int amount) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.damage(amount);
     }
 
     @Override
     public void damage(double amount, Entity source) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.damage(amount);
+        // TODO: use source
     }
 
     @Override
     public void _INVALID_damage(int amount, Entity source) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.damage(amount, source);
     }
 
     @Override
     public double getHealth() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        // TODO: voxel-health
+        //To change body of implemented methods use File | Settings | File Templates.
+        return 0.0;
     }
 
     @Override
     public int _INVALID_getHealth() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return (int)this.getHealth();
     }
 
     @Override
@@ -1105,7 +1124,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void _INVALID_setHealth(int health) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.setHealth(health);
     }
 
     @Override
@@ -1115,7 +1134,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public int _INVALID_getMaxHealth() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return (int)this.getMaxHealth();
     }
 
     @Override
@@ -1125,7 +1144,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void _INVALID_setMaxHealth(int health) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        this.setMaxHealth(health);
     }
 
     @Override
@@ -1215,7 +1234,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public Set<String> getListeningPluginChannels() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return Collections.emptySet();
     }
 
     @Override
@@ -1230,7 +1249,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public boolean isOp() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return true;
     }
 
     @Override
