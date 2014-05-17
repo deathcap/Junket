@@ -17,8 +17,7 @@ import java.util.*;
 public class WorldImpl implements org.bukkit.World {
     @Override
     public Block getBlockAt(int x, int y, int z) {
-        // TODO: call voxel-engine getBlock()
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return new BlockImpl(this, x, y, z);
     }
 
     @Override

@@ -13,6 +13,20 @@ import java.util.Collection;
 import java.util.List;
 
 public class BlockImpl implements Block {
+
+    // location coordinates (wish these could be long, but interface requires int)
+    private final WorldImpl w;
+    private final int x;
+    private final int y;
+    private final int z;
+
+    public BlockImpl(WorldImpl w, int x, int y, int z) {
+        this.w = w;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     /**
      * Gets the metadata for this block
      *
@@ -79,6 +93,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public Material getType() {
+        // TODO: voxel-engine getBlock()
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -135,7 +150,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public World getWorld() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.w;
     }
 
     /**
@@ -145,7 +160,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public int getX() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return x;
     }
 
     /**
@@ -155,7 +170,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public int getY() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return y;
     }
 
     /**
@@ -165,7 +180,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public int getZ() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return z;
     }
 
     /**
@@ -175,7 +190,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public Location getLocation() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return new Location(w, x, y, z);
     }
 
     /**
@@ -188,7 +203,14 @@ public class BlockImpl implements Block {
      */
     @Override
     public Location getLocation(Location loc) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        if (loc != null) {
+            loc.setWorld(w);
+            loc.setX(x);
+            loc.setY(y);
+            loc.setZ(z);
+        }
+
+        return loc;
     }
 
     /**
@@ -198,6 +220,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public Chunk getChunk() {
+        // TODO: voxel-engine .voxels.getChunkAtPosition()
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -231,6 +254,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public void setType(Material type) {
+        // TODO: voxel-engine setBlock()
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -402,7 +426,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public boolean isEmpty() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.getType() != Material.AIR; // TODO: also support non-air empty blocks?
     }
 
     /**
@@ -416,6 +440,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public boolean isLiquid() {
+        // TODO: voxel-registry .fluid
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -468,6 +493,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public boolean breakNaturally(ItemStack tool) {
+        // TODO: voxel-harvest block2ItemPile
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -478,6 +504,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public Collection<ItemStack> getDrops() {
+        // TODO: voxel-registry getProp(block, 'itemDrop')
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -490,6 +517,7 @@ public class BlockImpl implements Block {
      */
     @Override
     public Collection<ItemStack> getDrops(ItemStack tool) {
+        // TODO: voxel-registry check requiredTool, tool class, if matches return drop
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
