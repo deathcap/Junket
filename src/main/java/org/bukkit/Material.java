@@ -7,13 +7,15 @@ import java.util.Map;
 /**
  * Replacement class for org.bukkit.Material enum from Bukkit
  */
-public class Material { // 'classes cannot directly extend java.lang.Enum'
+public class Material extends deathcap.junket.PlaceholderEnum { // => extends java.lang.Enum
 
     // names expected by Bukkit plugins, enum and ordinal (has to match for compiled switch() statements)
     private final String bukkitName;
     private final int bukkitIndex;
 
     private Material(String bukkitName, int bukkitIndex) {
+        super(bukkitName, bukkitIndex);
+
         this.bukkitName = bukkitName;
         this.bukkitIndex = bukkitIndex;
 
@@ -33,6 +35,7 @@ public class Material { // 'classes cannot directly extend java.lang.Enum'
         Material.name2id.put(bukkitName, bukkitIndex);
     }
 
+    /* can't override final methods - these are provided by java.lang.Enum
     public int ordinal() {
         return this.bukkitIndex;
     }
@@ -44,6 +47,7 @@ public class Material { // 'classes cannot directly extend java.lang.Enum'
     public String toString() {
         return this.bukkitName;
     }
+    */
 
     // array ordinal -> Material
     public static Material ENUM$VALUES[] = new Material[] { };

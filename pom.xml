@@ -44,6 +44,14 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <relocations>
+            <relocation>
+              <pattern>deathcap.junket.PlaceholderEnum</pattern>
+              <shadedPattern>java.lang.Enum</shadedPattern>
+            </relocation>
+          </relocations>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
