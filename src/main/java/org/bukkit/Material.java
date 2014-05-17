@@ -26,6 +26,10 @@ public class Material extends deathcap.junket.PlaceholderEnum { // => extends ja
             throw new RuntimeException("duplicate material registration, name="+bukkitName+", index="+bukkitIndex+" already exists at index="+name2id.get(bukkitName));
         }
 
+        if (bukkitIndex < Material.ENUM$VALUES.length && Material.ENUM$VALUES[bukkitIndex] != null) {
+            throw new RuntimeException("duplicate material registration, index="+bukkitIndex+", name="+bukkitName+" already exists with name="+Material.ENUM$VALUES[bukkitIndex].bukkitName);
+        }
+
         // extend array to fit new materials
         // requires copying, see http://www.javadb.com/extend-the-size-of-an-array/
         int maxIndex = Math.max(ENUM$VALUES.length - 1, bukkitIndex);
