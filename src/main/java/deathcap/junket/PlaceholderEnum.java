@@ -8,6 +8,8 @@ package deathcap.junket;
 public class PlaceholderEnum {
 
     protected PlaceholderEnum(String name, int index) {
+        throw new AssertionError("deathcap.junket.Placeholder Enum invoked instead of java.lang.Enum!");
+
         // required for compilation type checker, even though it is never used
     }
 }
