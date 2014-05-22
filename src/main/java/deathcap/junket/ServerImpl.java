@@ -29,6 +29,7 @@ public class ServerImpl implements org.bukkit.Server {
     private final Logger logger;
     private final SimpleCommandMap commandMap;
     private final SimplePluginManager pluginManager;
+    private final HelpMapImpl helpMap;
     private WorldImpl theWorld;
 
     public ServerImpl() {
@@ -40,6 +41,7 @@ public class ServerImpl implements org.bukkit.Server {
 
         commandMap = new SimpleCommandMap(this);
         pluginManager = new SimplePluginManager(this, commandMap);
+        helpMap = new HelpMapImpl();
 
         createWorld();
         loadMaterials();
@@ -462,7 +464,7 @@ public class ServerImpl implements org.bukkit.Server {
 
     @Override
     public HelpMap getHelpMap() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return helpMap;
     }
 
     @Override
