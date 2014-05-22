@@ -30,6 +30,7 @@ public class ServerImpl implements org.bukkit.Server {
     private final SimpleCommandMap commandMap;
     private final SimplePluginManager pluginManager;
     private final HelpMapImpl helpMap;
+    private final ServicesManagerImpl servicesManager;
     private WorldImpl theWorld;
 
     public ServerImpl() {
@@ -42,6 +43,7 @@ public class ServerImpl implements org.bukkit.Server {
         commandMap = new SimpleCommandMap(this);
         pluginManager = new SimplePluginManager(this, commandMap);
         helpMap = new HelpMapImpl();
+        servicesManager = new ServicesManagerImpl();
 
         createWorld();
         loadMaterials();
@@ -249,7 +251,7 @@ public class ServerImpl implements org.bukkit.Server {
 
     @Override
     public ServicesManager getServicesManager() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return servicesManager;
     }
 
     @Override
