@@ -31,6 +31,7 @@ public class ServerImpl implements org.bukkit.Server {
     private final SimplePluginManager pluginManager;
     private final HelpMapImpl helpMap;
     private final ServicesManagerImpl servicesManager;
+    private final MessengerImpl messenger;
     private WorldImpl theWorld;
 
     public ServerImpl() {
@@ -44,6 +45,7 @@ public class ServerImpl implements org.bukkit.Server {
         pluginManager = new SimplePluginManager(this, commandMap);
         helpMap = new HelpMapImpl();
         servicesManager = new ServicesManagerImpl();
+        messenger = new MessengerImpl();
 
         createWorld();
         loadMaterials();
@@ -461,7 +463,7 @@ public class ServerImpl implements org.bukkit.Server {
 
     @Override
     public Messenger getMessenger() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return messenger;
     }
 
     @Override
