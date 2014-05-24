@@ -32,6 +32,7 @@ public class ServerImpl implements org.bukkit.Server {
     private final HelpMapImpl helpMap;
     private final ServicesManagerImpl servicesManager;
     private final MessengerImpl messenger;
+    private final SchedulerImpl scheduler;
     private WorldImpl theWorld;
 
     public ServerImpl() {
@@ -46,6 +47,7 @@ public class ServerImpl implements org.bukkit.Server {
         helpMap = new HelpMapImpl();
         servicesManager = new ServicesManagerImpl();
         messenger = new MessengerImpl();
+        scheduler = new SchedulerImpl();
 
         createWorld();
         loadMaterials();
@@ -248,7 +250,7 @@ public class ServerImpl implements org.bukkit.Server {
 
     @Override
     public BukkitScheduler getScheduler() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return scheduler;
     }
 
     @Override
