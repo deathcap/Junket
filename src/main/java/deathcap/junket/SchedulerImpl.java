@@ -82,6 +82,7 @@ public class SchedulerImpl implements BukkitScheduler {
 
     @Override
     public BukkitTask runTask(Plugin plugin, Runnable task) throws IllegalArgumentException {
+        task.run();
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
